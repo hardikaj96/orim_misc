@@ -16,7 +16,7 @@
             }
             span a { font-size:20px; }
             span {
-                font-size:20px;
+                font-size:18px;
             }
         </style>
         <script>
@@ -38,7 +38,10 @@
     </head>
     <body>
         <div class="container">
-            <h1 align="center">Open Road Integrated Media</h1>
+            <div class="header">
+                <h1 align="center">Open Road Integrated Media</h1>
+            </div>
+            <br><br>
             <span class='align-right'>
                 <a href="{% url 'keyword_index' %}" style="float:right">Back to Search</a>
             </span>
@@ -57,24 +60,21 @@
                         <th>Pages</th>
                         <th>Publisher</th>
                         <th>Keyword</th>
+                        <th>{{ orim_title_details.count }}</th>
                     </tr>
-                    {% if orim_title_details.count > 0 %}
-                        {% for detail in orim_title_details %}
-                            <tr>
-                                <td>{{ forloop.counter }}</td>
-                                <td>{{ detail.page }}</td>
-                                <td>{{ detail.position }}</td>
-                                <td>{{ detail.title }}</td>
-                                <td>{{ detail.author }}</td>
-                                <td>{{ detail.sales_rank }}</td>
-                                <td>{{ detail.pages }}</td>
-                                <td>{{ detail.publisher }}</td>
-                                <td>{{ detail.keyword }}</td>
-                            </tr>
-                        {% endfor %}
-                    {% else %}
-                        <tr colspan=9 align="center"><td align="center">There are no titles to display</td></tr>
-                    {% endif %}
+                    {% for detail in orim_title_details %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ detail.page }}</td>
+                            <td>{{ detail.position }}</td>
+                            <td>{{ detail.title }}</td>
+                            <td>{{ detail.author }}</td>
+                            <td>{{ detail.sales_rank }}</td>
+                            <td>{{ detail.pages }}</td>
+                            <td>{{ detail.publisher }}</td>
+                            <td>{{ detail.keyword }}</td>
+                        </tr>
+                    {% endfor %}
                 </table>
             </div>
         </div>
