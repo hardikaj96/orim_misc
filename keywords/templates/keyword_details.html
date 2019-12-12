@@ -1,1 +1,112 @@
-<html>Helloasda</html>
+<html>
+    <head>
+        <style>
+            #orim {
+                display: none;
+            }
+            #general {
+                display: block;
+            }
+            .table {
+                align: center;
+                border: 1;
+            }
+            span.align-right { 
+                text-align:right; 
+            }
+            span a { font-size:20px; }
+            span {
+                font-size:20px;
+            }
+        </style>
+        <script>
+            function changeView() {
+            var checkbox = document.getElementById('filter');
+                if (checkbox.checked){
+                    document.getElementById('orim').style.display = 'block';
+                    document.getElementById('general').style.display = 'none';
+                }
+                else {
+                    document.getElementById('orim').style.display = 'none';
+                    document.getElementById('general').style.display = 'block';
+                }
+            }
+        </script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1 align="center">Open Road Integrated Media</h1>
+            <span class='align-right'>
+                <a href="{% url 'keyword_index' %}" style="float:right">Back to Search</a>
+            </span>
+            <p>
+                <input id='filter' type="checkbox" class="form-check-input" name="filter" value="orim" onclick="changeView()"><span>   View Open Road Integrated Media Titles</span><br>
+            </p>    
+            <div id='orim'>
+                <table class="table">
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>Page</th>
+                        <th>Position</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Sales Rank</th>
+                        <th>Pages</th>
+                        <th>Publisher</th>
+                        <th>Keyword</th>
+                    </tr>
+                    {% if orim_title_details.count > 0 %}
+                        {% for detail in orim_title_details %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ detail.page }}</td>
+                                <td>{{ detail.position }}</td>
+                                <td>{{ detail.title }}</td>
+                                <td>{{ detail.author }}</td>
+                                <td>{{ detail.sales_rank }}</td>
+                                <td>{{ detail.pages }}</td>
+                                <td>{{ detail.publisher }}</td>
+                                <td>{{ detail.keyword }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr colspan=9 align="center"><td align="center">There are no titles to display</td></tr>
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+        <div class="container">
+            <div id='general'>
+                <table class="table">
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>Page</th>
+                        <th>Position</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Sales Rank</th>
+                        <th>Pages</th>
+                        <th>Publisher</th>
+                        <th>Keyword</th>
+                    </tr>
+                    {% for detail in details %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ detail.page }}</td>
+                            <td>{{ detail.position }}</td>
+                            <td>{{ detail.title }}</td>
+                            <td>{{ detail.author }}</td>
+                            <td>{{ detail.sales_rank }}</td>
+                            <td>{{ detail.pages }}</td>
+                            <td>{{ detail.publisher }}</td>
+                            <td>{{ detail.keyword }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

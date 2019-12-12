@@ -17,3 +17,10 @@ class TitlesGeneral(models.Model):
     sales_rank = models.FloatField()
     image = models.CharField(max_length=100)
     asin = models.CharField(max_length=100)
+
+class OrimTitles(models.Model):
+    asin = models.CharField(max_length=100)
+    title = models.TextField()
+    publisher = models.TextField()
+    marketingservices = models.TextField()
+    batch = models.IntegerField()
